@@ -15,12 +15,11 @@ type CarouselProps = {
 // Variables de taille selon l'écran (largeur des blocs + espace entre eux).
 const ROOT =
   "flex h-full min-h-0 flex-col " +
-  "[--gap:12px] [--side-w:76vw] [--center-w:86vw] " +
-  "sm:[--gap:18px] sm:[--side-w:72vw] sm:[--center-w:80vw] " +
-  "lg:[--gap:24px] lg:[--side-w:min(72vw,1240px)] lg:[--center-w:min(76vw,1440px)]";
+  "[--gap:12px] [--side-w:78vw] [--center-w:90vw] " +
+  "sm:[--gap:18px] sm:[--side-w:78vw] sm:[--center-w:86vw] " +
+  "lg:[--gap:24px] lg:[--side-w:min(80vw,1440px)] lg:[--center-w:min(88vw,1600px)]";
 
-// Piste : défilement horizontal avec accroche ; sur bureau, les 3 blocs tiennent et on centre.
-// before/after = espaceurs qui permettent de centrer le premier et le dernier bloc.
+// Piste défilante avec accroche ; les espaceurs centrent aussi le premier et le dernier bloc.
 const TRACK =
   "relative flex min-h-0 flex-1 snap-x snap-mandatory items-center gap-[var(--gap)] " +
   "overflow-x-auto overflow-y-hidden overscroll-x-contain py-3 " +
@@ -33,18 +32,18 @@ const TRACK =
 const SLOT =
   "group relative w-[var(--side-w)] flex-none snap-center snap-always " +
   "h-[78%] max-h-[620px] lg:h-[76%] lg:max-h-[600px] " +
-  "data-[variant=center]:h-[94%] data-[variant=center]:max-h-[860px] " +
+  "data-[variant=center]:h-[96%] data-[variant=center]:max-h-none " +
   "data-[variant=center]:w-[var(--center-w)] " +
   "transition-[scale,opacity] duration-500 ease-out motion-reduce:transition-none " +
   "max-lg:data-[active=false]:scale-[0.94] max-lg:data-[active=false]:opacity-60";
 
-// Carte flottante : clair au milieu, vert foncé translucide sur les côtés.
+// Carte flottante : caméra plein cadre au milieu, panneaux translucides sur les côtés.
 const CARD =
   "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[28px] " +
   "shadow-[0_22px_44px_-22px_rgba(0,0,0,0.5)] ring-1 ring-inset ring-cream/10 " +
   "animate-float motion-reduce:animate-none " +
   "group-data-[variant=side]:bg-ink/60 group-data-[variant=side]:text-cream group-data-[variant=side]:backdrop-blur-xl " +
-  "group-data-[variant=center]:bg-cream group-data-[variant=center]:text-ink";
+  "group-data-[variant=center]:bg-transparent group-data-[variant=center]:text-cream";
 
 // Zone cliquable sur la partie visible d'un bloc voisin (carrousel uniquement).
 const HIT =

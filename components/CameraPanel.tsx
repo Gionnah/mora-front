@@ -16,13 +16,13 @@ type Facing = "user" | "environment";
 /* ---------- Classes Tailwind ---------- */
 
 const BTN =
-  "inline-flex min-h-[46px] cursor-pointer items-center justify-center gap-2 rounded-[14px] px-4 " +
+  "inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-[14px] px-4 " +
   "text-[0.92rem] font-semibold transition duration-150 enabled:active:scale-[0.97] " +
   "disabled:cursor-progress disabled:opacity-55 " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
-const BTN_PRIMARY = `${BTN} flex-[1_1_100%] sm:flex-[1_1_0%] bg-lime text-ink hover:enabled:brightness-95`;
-const BTN_SECONDARY = `${BTN} min-w-0 flex-1 text-ink ring-[1.5px] ring-inset ring-ink/55 hover:bg-ink/10`;
-const BTN_ICON = `${BTN} w-[46px] flex-none bg-ink/10 px-0 text-ink hover:enabled:bg-ink/15`;
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream";
+const BTN_PRIMARY = `${BTN} flex-[1_1_100%] sm:flex-[0_1_auto] bg-lime text-ink hover:enabled:brightness-95`;
+const BTN_SECONDARY = `${BTN} min-w-0 flex-1 bg-cream/95 text-ink ring-[1.5px] ring-inset ring-cream/50 hover:bg-cream`;
+const BTN_ICON = `${BTN} w-[44px] flex-none bg-cream/15 px-0 text-cream hover:enabled:bg-cream/25`;
 
 function describeError(error: unknown): string {
   if (typeof window !== "undefined" && !window.isSecureContext) {
@@ -191,11 +191,15 @@ export default function CameraPanel() {
   return (
     <section
       aria-label="Caméra"
-      className="flex h-full min-h-0 flex-col gap-3.5 p-[clamp(14px,2.2vw,22px)]"
+      className="relative h-full min-h-0 overflow-hidden rounded-[inherit] bg-ink text-cream"
     >
-      <header className="flex flex-none items-baseline justify-between gap-3">
-        <h2 className="font-display text-[1.35rem] font-semibold italic tracking-tight">Caméra</h2>
-        <p className="text-[0.78rem] opacity-60">Direct ou import</p>
+      <header className="absolute right-3 top-3 z-10 flex max-w-[calc(100%-24px)] items-center gap-2.5 rounded-full bg-ink/75 px-3.5 py-2.5 text-cream backdrop-blur-md sm:right-5 sm:top-5">
+        <h2 className="font-display text-base font-semibold italic tracking-tight">Caméra</h2>
+        <span
+          data-live={mode === "camera"}
+          className="size-2 flex-none rounded-full bg-cream/50 data-[live=true]:animate-pulse data-[live=true]:bg-orange motion-reduce:animate-none"
+        />
+        <p className="max-w-[35vw] truncate text-xs opacity-75">{pillLabel}</p>
       </header>
 
       {/* Écran d'affichage */}
@@ -204,7 +208,7 @@ export default function CameraPanel() {
         onDragOver={onDragOver}
         onDragLeave={() => setDragging(false)}
         onDrop={onDrop}
-        className="relative isolate grid min-h-0 flex-1 place-items-center overflow-hidden rounded-[20px] bg-ink text-cream outline-2 -outline-offset-8 outline-dashed outline-transparent transition-[outline-color] duration-200 data-[dragging=true]:outline-lime"
+        className="absolute inset-0 isolate grid place-items-center overflow-hidden rounded-[inherit] bg-ink text-cream outline-2 -outline-offset-8 outline-dashed outline-transparent transition-[outline-color] duration-200 data-[dragging=true]:outline-lime"
       >
         {mode !== "idle" ? (
           <video
@@ -232,27 +236,22 @@ export default function CameraPanel() {
           </div>
         )}
 
-        {/* Pastille d'état */}
-        <div className="absolute left-3 top-3 z-2 inline-flex max-w-[calc(100%-24px)] items-center gap-2 rounded-full bg-ink/70 px-2.75 py-1.5 text-xs text-cream backdrop-blur-md">
-          <span
-            data-live={mode === "camera"}
-            className="size-2 flex-none rounded-full bg-cream/50 data-[live=true]:animate-pulse data-[live=true]:bg-orange motion-reduce:animate-none"
-          />
-          <span className="truncate">{pillLabel}</span>
-        </div>
-
-        {error ? (
-          <p
-            role="alert"
-            className="absolute inset-x-3 bottom-3 z-3 rounded-xl border-l-[3px] border-orange bg-ink/95 px-3 py-2.5 text-[0.82rem] leading-snug text-cream"
-          >
-            {error}
-          </p>
-        ) : null}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,transparent_24%,transparent_58%,rgba(0,0,0,0.48)_100%)]"
+        />
       </div>
 
-      {/* Commandes */}
-      <div className="flex flex-none flex-wrap gap-2.5">
+      {error ? (
+        <p
+          role="alert"
+          className="absolute inset-x-3 bottom-[calc(112px+env(safe-area-inset-bottom))] z-20 rounded-xl border-l-[3px] border-orange bg-ink/90 px-3 py-2.5 text-[0.82rem] leading-snug text-cream backdrop-blur-md sm:bottom-20 sm:left-auto sm:right-5 sm:max-w-md"
+        >
+          {error}
+        </p>
+      ) : null}
+
+      <div className="absolute bottom-[calc(12px+env(safe-area-inset-bottom))] left-3 right-3 z-20 flex flex-wrap items-center justify-center gap-2 rounded-[20px] border border-cream/15 bg-ink/70 p-2 backdrop-blur-xl sm:left-auto sm:right-5 sm:flex-nowrap">
         <button type="button" className={BTN_PRIMARY} onClick={toggleCamera} disabled={busy}>
           <CameraIcon size={18} />
           {mode === "camera" ? "Arrêter la caméra" : busy ? "Démarrage…" : "Activer la caméra"}
@@ -262,6 +261,7 @@ export default function CameraPanel() {
           type="button"
           className={BTN_SECONDARY}
           onClick={() => fileInputRef.current?.click()}
+          disabled={busy}
         >
           <UploadIcon />
           {mode === "file" ? "Changer de vidéo" : "Importer une vidéo"}

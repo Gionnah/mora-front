@@ -5,12 +5,12 @@ import SidePanel from "@/components/SidePanel";
 
 export default function Home() {
   return (
-    <main className="fixed inset-0 flex flex-col overflow-hidden pt-[env(safe-area-inset-top)]">
-      <header className="flex flex-none justify-start px-[clamp(16px,3vw,40px)] pb-0 pt-[clamp(12px,2vh,20px)] [@media(max-height:520px)]:pt-2">
+    <main className="fixed inset-0 overflow-hidden">
+      <header className="pointer-events-none absolute left-4 top-[calc(env(safe-area-inset-top)+1rem)] z-20 rounded-full bg-ink/70 px-3 py-2 shadow-lg backdrop-blur-md">
         <Logo />
       </header>
 
-      <div className="min-h-0 flex-1">
+      <div className="h-full min-h-0">
         {/* Le bloc du milieu (index 1) est le plus grand. Les deux autres sont à définir. */}
         <Carousel labels={["Bloc gauche", "Caméra", "Bloc droit"]}>
           <SidePanel title="Bloc gauche" />
