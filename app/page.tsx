@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Inter } from "next/font/google";
 import MoraIntro from "../components/MoraIntro";
 import BlocksSlider from "../components/BlocksSlider";
-import { THEME, type PanelId } from "../components/theme";
+import { THEME, type PanelId } from "../lib/theme";
 
 const body = Inter({ subsets: ["latin"] });
 
