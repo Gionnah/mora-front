@@ -1,6 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme inline {
+  --color-moss: var(--bg);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-lime: var(--lime);
+  --color-orange: var(--orange);
+
+  /* Polices (chargées avec next/font dans layout.tsx) */
+  --font-sans: var(--font-dm), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+}
+
+/* Flottement des blocs (utilitaire : animate-float) */
+@theme {
+  --animate-float: float 7s ease-in-out infinite alternate;
+
+  @keyframes float {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-7px);
+    }
+  }
+}
+
+/* Fond de page : dégradé léger sur le vert du thème */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    120% 80% at 50% -10%,
+    color-mix(in srgb, var(--cream) 14%, transparent),
+    transparent 60%
+  );
+  background-attachment: fixed;
+  color: var(--cream);
+  overflow: hidden;
+  overscroll-behavior: none;
 }

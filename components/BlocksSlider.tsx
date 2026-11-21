@@ -10,6 +10,7 @@ import {
 } from "react";
 import { Bebas_Neue, Inter } from "next/font/google";
 import { THEME, type PanelId } from "./theme";
+import Link from "next/dist/client/link";
 
 const display = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 const body = Inter({ subsets: ["latin"] });
@@ -791,9 +792,9 @@ function PanelContent({ id }: { id: PanelId }) {
               autoComplete="current-password"
               required
             />
-            <button className="pop-submit w-full" type="submit">
+            <Link href="/home" className="pop-submit w-full" type="submit">
               Se connecter
-            </button>
+            </Link>
           </div>
           <div>
           </div>
