@@ -15,9 +15,9 @@ type CarouselProps = {
 // Variables de taille selon l'écran (largeur des blocs + espace entre eux).
 const ROOT =
   "flex h-full min-h-0 flex-col " +
-  "[--gap:14px] [--side-w:74vw] [--center-w:80vw] " +
-  "sm:[--gap:18px] sm:[--side-w:min(56vw,480px)] sm:[--center-w:min(64vw,560px)] " +
-  "lg:[--gap:24px] lg:[--side-w:min(25vw,340px)] lg:[--center-w:min(38vw,560px)]";
+  "[--gap:12px] [--side-w:76vw] [--center-w:86vw] " +
+  "sm:[--gap:18px] sm:[--side-w:72vw] sm:[--center-w:80vw] " +
+  "lg:[--gap:24px] lg:[--side-w:min(72vw,1240px)] lg:[--center-w:min(76vw,1440px)]";
 
 // Piste : défilement horizontal avec accroche ; sur bureau, les 3 blocs tiennent et on centre.
 // before/after = espaceurs qui permettent de centrer le premier et le dernier bloc.
@@ -26,16 +26,15 @@ const TRACK =
   "overflow-x-auto overflow-y-hidden overscroll-x-contain py-3 " +
   "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden " +
   "before:shrink-0 before:basis-[calc((100%_-_var(--side-w))_/_2_-_var(--gap))] before:content-[''] " +
-  "after:shrink-0 after:basis-[calc((100%_-_var(--side-w))_/_2_-_var(--gap))] after:content-[''] " +
-  "lg:snap-none lg:justify-center lg:overflow-visible lg:py-0 lg:before:hidden lg:after:hidden";
+  "after:shrink-0 after:basis-[calc((100%_-_var(--side-w))_/_2_-_var(--gap))] after:content-['']";
 
 // Bloc : taille normale, un peu plus grand pour celui du milieu (data-variant="center").
 // En mode carrousel (< lg), les blocs non actifs sont réduits et estompés.
 const SLOT =
   "group relative w-[var(--side-w)] flex-none snap-center snap-always " +
   "h-[78%] max-h-[620px] lg:h-[76%] lg:max-h-[600px] " +
-  "data-[variant=center]:h-[90%] data-[variant=center]:max-h-[700px] " +
-  "lg:data-[variant=center]:max-h-[680px] data-[variant=center]:w-[var(--center-w)] " +
+  "data-[variant=center]:h-[94%] data-[variant=center]:max-h-[860px] " +
+  "data-[variant=center]:w-[var(--center-w)] " +
   "transition-[scale,opacity] duration-500 ease-out motion-reduce:transition-none " +
   "max-lg:data-[active=false]:scale-[0.94] max-lg:data-[active=false]:opacity-60";
 

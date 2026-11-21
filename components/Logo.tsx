@@ -3,7 +3,7 @@ export default function Logo() {
     <div
       role="img"
       aria-label="Mora Mora"
-      className="inline-flex select-none items-center gap-[0.35em] font-display text-[clamp(1.6rem,4vw,2.3rem)] italic leading-none tracking-tight text-cream"
+      className="inline-flex select-none items-center gap-[0.35em] font-display text-[clamp(1.15rem,2.4vw,1.7rem)] italic leading-none tracking-tight text-cream"
     >
       <span aria-hidden="true" className="font-semibold">
         mora

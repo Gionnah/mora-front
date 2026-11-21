@@ -20,7 +20,7 @@ const BTN =
   "text-[0.92rem] font-semibold transition duration-150 enabled:active:scale-[0.97] " +
   "disabled:cursor-progress disabled:opacity-55 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
-const BTN_PRIMARY = `${BTN} flex-[1_1_100%] bg-lime text-ink hover:enabled:brightness-95`;
+const BTN_PRIMARY = `${BTN} flex-[1_1_100%] sm:flex-[1_1_0%] bg-lime text-ink hover:enabled:brightness-95`;
 const BTN_SECONDARY = `${BTN} min-w-0 flex-1 text-ink ring-[1.5px] ring-inset ring-ink/55 hover:bg-ink/10`;
 const BTN_ICON = `${BTN} w-[46px] flex-none bg-ink/10 px-0 text-ink hover:enabled:bg-ink/15`;
 

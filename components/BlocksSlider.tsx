@@ -287,7 +287,7 @@ export default function BlocksSlider({
         position: "relative",
         height: "100%",
         overflow: "hidden",
-        background: `radial-gradient(120% 120% at 20% 10%, #2a7048 0%, ${BG} 65%)`,
+        background: `radial-gradient(120% 120% at 20% 10%, #1b4b30 0%, ${BG} 65%)`,
         color: CREAM,
       }}
     >
